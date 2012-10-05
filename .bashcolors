@@ -1,0 +1,18 @@
+# bash color codes
+black="$(tput setaf 0)"
+darkgrey="$(tput bold ; tput setaf 0)"
+red="$(tput setaf 1)"
+lightred="$(tput bold ; tput setaf 1)"
+green="$(tput setaf 2)"
+lightgreen="$(tput bold ; tput setaf 2)"
+brown="$(tput setaf 3)"
+yellow="$(tput bold ; tput setaf 3)"
+blue="$(tput setaf 4)"
+lightblue="$(tput bold ; tput setaf 4)"
+purple="$(tput setaf 5)"
+pink="$(tput bold ; tput setaf 5)"
+cyan="$(tput setaf 6)"
+lightcyan="$(tput bold ; tput setaf 6)"
+lightgrey="$(tput setaf 7)"
+white="$(tput bold ; tput setaf 7)"
+nc="$(tput sgr0)" # No Color
