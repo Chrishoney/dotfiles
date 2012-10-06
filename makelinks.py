@@ -21,8 +21,7 @@ Options:
 import os
 import shutil
 import sys
-
-# try importing the system library first
+# try importing the system library first, then lib/docopt if it fails
 try:
     from docopt import docopt
 except ImportError:
