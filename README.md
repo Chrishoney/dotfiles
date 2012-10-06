@@ -1,4 +1,4 @@
-# Installation
+## Installation
 
 * `./makelinks.py --backup <ext>` or `./makelinks --wipe`
 * `./makelinks.py <os>`
@@ -7,9 +7,13 @@
 
 Both of these options remove the old files after finishing.
 
+#### Wipe
+
 `./makelinks.py --wipe`
 
 --wipe removes all files being replaced without confirmation.
+
+#### Backup
 
 `./makelinks.py --backup <ext> <os>`
 

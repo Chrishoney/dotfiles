@@ -2,7 +2,7 @@
 import os
 import sys
 
-header = '''# Installation
+header = '''## Installation
 
 * `./makelinks.py --backup <ext>` or `./makelinks --wipe`
 * `./makelinks.py <os>`
@@ -11,9 +11,13 @@ header = '''# Installation
 
 Both of these options remove the old files after finishing.
 
+#### Wipe
+
 `./makelinks.py --wipe`
 
 --wipe removes all files being replaced without confirmation.
+
+#### Backup
 
 `./makelinks.py --backup <ext> <os>`
 
