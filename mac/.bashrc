@@ -1,5 +1,4 @@
 # mac osx x .bashrc - chrishoney@gmail.com
-Sat Oct  6 05:41:00 CDT 2012
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
