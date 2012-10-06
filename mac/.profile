@@ -2,8 +2,6 @@
 
 export PATH=/usr/local/bin:/usr/local/share/python:$PATH:$HOME/bin
 
-rc="$HOME/.bashrc"
-
-if [[ -f $rc ]]; then
-    source $rc
+if [[ -f "$HOME/.bashrc" ]]; then
+    source "$HOME/.bashrc"
 fi
