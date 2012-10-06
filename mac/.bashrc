@@ -1,4 +1,5 @@
 # mac osx x .bashrc - chrishoney@gmail.com
+Sat Oct  6 05:41:00 CDT 2012
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
@@ -61,15 +62,13 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
 fi
 
-# enable programmable completion features
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
-
-# check if $gitcomplete is a symlink to /usr/local/etc/bash_completion.d/
-git_complete=~/.completion/git-completion.bash
-if [ -h $git_complete ]; then
-    source $git_complete
+# enable bash completion for tons of programs.
+# this requires the 'bash-completion' package
+#
+# for a full list of supported programs:
+# `find $(brew --prefix)/etc/bash_completion.d | sed 's|^.*\/\/||`
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+    source $(brew --prefix)/etc/bash_completion
 fi
 
 if [ -f ~/.bash_aliases ]; then

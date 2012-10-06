@@ -1,18 +1,9 @@
 # functions
-venv () { 
-    source ~/.venv/$1/bin/activate; 
-}
-
+bell () { echo -e '\x07'; }
 mkcd () { mkdir $1 && cd $1; }
-bell () { echo -e \\07; }
-
-termcast () {
-    script -t 0 >( cat ~/.ratry_login - | nc noway.ratry.ru 31337 > /dev/null ) "$@";
-}
-
-web () {
-    open http://$1
-}
+venv () { source ~/.venv/$1/bin/activate; }
+simple () { python -m SimpleHTTPServer $1; }
+web () { open http://$1; }
 
 crawl () {
     if [[ $1 == "cszo" ]]; then
@@ -31,4 +22,8 @@ crawl () {
     else
         echo "Usage: crawl <server>  |  server=cao, cdo, or cszo"
     fi
+}
+
+termcast () {
+    script -t 0 >( cat ~/.ratry_login - | nc noway.ratry.ru 31337 > /dev/null ) "$@"
 }
