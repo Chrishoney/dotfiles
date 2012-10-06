@@ -1,22 +1,16 @@
 #!/usr/bin/env python
 """makelinks.py
 
-Create symlinks to the correct dotfiles.
-
 Usage:
-  makelinks.py OS
-  makelinks.py --wipe
-  makelinks.py --backup <ext>
-  makelinks.py -h | --help
-
-Arguments:
-  OS  [linux, mac]
+  makelinks.py (--wipe | --backup <ext>) <os>
 
 Options:
   -h --help       Show this screen.
   --wipe          Delete existing dotfiles
-  --backup <ext>  Backup dotfiles as 'name'+'ext'
+  --backup <ext>  Backup dotfiles as 'name' + 'ext'
 
+Arguments:
+  <os>  linux, mac
 """
 import os
 import shutil
@@ -88,20 +82,16 @@ def backup(files, ext):
 if __name__ == '__main__':
     args = docopt(__doc__)
     links = dotlinks()
-    wipe_flag = None
-    # wipe or backup and exit
+    files = dotfiles(args['OS'])
+    # wipe or backup
     if args['--backup']:
         backup(links, args['--backup'])
-        wipe_flag = True
-    if args['--wipe'] or wipe_flag:
+    elif args['--wipe']:
         wipe(links)
-        sys.exit("Ready to link")
     # create the links
-    files, = dotfiles(args['OS']),
-    pairs = zip(files, links)
-    make_links(pairs)
+    make_links(zip(files, links))
     if verify_links(links):
         sys.exit("Linking finished.")
     # This clause should never execute
     else:
-        sys.exit("Unknown Error")
+        sys.exit("Impossible!")
