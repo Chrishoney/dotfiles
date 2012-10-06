@@ -12,13 +12,14 @@ All 3 options create symlinks.
 
 `./makelinks.py --backup <ext> <os>`
 
+This will backup any existing files in the list  
+of files listed below under "Included files" in  
+the folder they are located in.  Files will be  
+named 'filename.<ext>'
+
 ### delete all bash dotfiles in home
 
 `./makelinks.py --wipe <os>`
-
-### create new README
-
-`./readme.py > README.md`
 
 ## Included Files
 
