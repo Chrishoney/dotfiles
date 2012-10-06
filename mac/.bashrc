@@ -65,7 +65,7 @@ fi
 # this requires the 'bash-completion' package
 #
 # for a full list of supported programs:
-# `find $(brew --prefix)/etc/bash_completion.d | sed 's|^.*\/\/||`
+# `find $(brew --prefix)/etc/bash_completion.d/ | sed 's|^.*\/\/||`
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
     source $(brew --prefix)/etc/bash_completion
 fi
