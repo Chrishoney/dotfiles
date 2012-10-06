@@ -2,28 +2,33 @@
 import os
 import sys
 
-header = '''# Instructions
+header = '''# Installation
 
-## Installation
+* `./makelinks.py --backup <ext>` or `./makelinks --wipe`
+* `./makelinks.py <os>`
 
-All 3 options create symlinks.
+### Deal with existing files
 
-### create fresh symlinks
+Both of these options remove the old files after finishing.
 
-`./makelinks.py <os>`
+`./makelinks.py --wipe`
 
-### backup current files
+--wipe removes all files being replaced without confirmation.
 
 `./makelinks.py --backup <ext> <os>`
 
-This will backup any existing files in the list  
-of files listed below under "Included files" in  
-the folder they are located in.  Files will be  
-named 'filename.<ext>'
+This will backup any existing files listed below under
+"Included files" in  the folder they are located in.
+Files will be named 'filename.<ext>' The original files
+are deleted after the backups are created.
 
-### delete all bash dotfiles in home
+Note: If the existing dotfiles are symlinks, no
+backups will be made, and the old symlinks will
+be silently removed.
 
-`./makelinks.py --wipe <os>`
+### Create fresh symlinks
+
+`./makelinks.py <os>`
 
 ## Included Files
 

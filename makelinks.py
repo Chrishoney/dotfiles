@@ -61,6 +61,12 @@ def make_links(files):
         except OSError:
             sys.exit('Please run with --wipe or --backup')
 
+def verify_links(files):
+    for link in files:
+        if not os.path.islink(link):
+            return False
+    return True
+
 def wipe(files):
     ''' Delete existing dotfiles, fail and exit if we can't write '''
     for fname in files:
@@ -69,28 +75,33 @@ def wipe(files):
         except OSError:
             pass
 
-def backup(files):
+def backup(files, ext):
     ''' Create a copy of fname at /path/to/fname.ext for each file '''
     for fname in files:
         src = os.path.join(link_path, fname)
-        dst = src + ext
-        shutil.move(src, dst)
+        if os.path.islink(src) or not os.path.exists(src):
+            pass
+        else:
+            dst = src + ext
+            shutil.move(src, dst)
 
 if __name__ == '__main__':
     args = docopt(__doc__)
     links = dotlinks()
+    wipe_flag = None
     # wipe or backup and exit
-    if args['--wipe']:
+    if args['--backup']:
+        backup(links, args['--backup'])
+        wipe_flag = True
+    if args['--wipe'] or wipe_flag:
         wipe(links)
         sys.exit("Ready to link")
-    elif args['--backup'] and not args['<ext>']:
-        sys.exit("Please supply an extension")
-    elif args['--backup'] and args['<ext>']:
-        backup(links, args['--backup'])
-        sys.exit("Ready to link")
-    if not args['OS']:
-        sys.exit(__doc__)
+    # create the links
     files, = dotfiles(args['OS']),
     pairs = zip(files, links)
     make_links(pairs)
-    sys.exit("Linking finished.")
+    if verify_links(links):
+        sys.exit("Linking finished.")
+    # This clause should never execute
+    else:
+        sys.exit("Unknown Error")
