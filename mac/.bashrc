@@ -82,6 +82,5 @@ fi
 
 # set line editor to vi
 set -o vi
-export PATH=$PATH:$HOME/bin
 export VISUAL=vim
 export EDITOR=vim

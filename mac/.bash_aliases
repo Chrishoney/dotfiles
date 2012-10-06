@@ -6,7 +6,7 @@ alias footv='telnet termcast.develz.org'
 alias iftop='sudo /usr/local/sbin/iftop -i en1'
 
 alias l='ls -A'     # list all except . and ..
-alias la='ls -al'   # long listing of all
+alias la='ls -Al'   # long listing of all
 alias ll='ls -l'
 
 #turn into a function
