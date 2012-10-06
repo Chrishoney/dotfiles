@@ -4,8 +4,9 @@
 Create symlinks to the correct dotfiles.
 
 Usage:
-  makelinks.py [--wipe] [OS]
-  makelinks.py [--backup <ext>] [OS]
+  makelinks.py OS
+  makelinks.py --wipe
+  makelinks.py --backup <ext>
   makelinks.py -h | --help
 
 Arguments:
@@ -14,7 +15,7 @@ Arguments:
 Options:
   -h --help       Show this screen.
   --wipe          Delete existing dotfiles
-  --backup <ext>  Backup existing dotfiles with given extension
+  --backup <ext>  Backup dotfiles as 'name'+'ext'
 
 """
 import os
@@ -42,16 +43,19 @@ dotfile_names = INCLUDE
 link_path = LINK_PATH
 
 def dotlinks(path=link_path):
+    ''' Return a list of link destination paths '''
     return [os.path.join(path, fname) for fname in dotfile_names]
 
 def dotfiles(os_choice, path=None):
+    ''' Return a list of dotfiles for the selected os '''
     path = os.getcwd()
     if not os_choice in os.listdir(path):
-        sys.exit('folder %s is missing' % os_choice) 
+        sys.exit('folder %s is missing' % os_choice)
     path = os.path.join(path, os_choice)
     return [os.path.join(path, fname) for fname in dotfile_names]
 
 def make_links(files):
+    ''' Create the symlinks, fail and exit if we can't write '''
     for pair in files:
         try:
             os.symlink(*pair)
@@ -59,15 +63,15 @@ def make_links(files):
             sys.exit('Please run with --wipe or --backup')
 
 def wipe(files):
+    ''' Delete existing dotfiles, fail and exit if we can't write '''
     for fname in files:
         try:
             os.unlink(os.path.join(link_path, fname))
         except OSError:
             pass
 
-def backup(files, ext=None):
-    if not ext:
-        ext = '.old'
+def backup(files):
+    ''' Create a copy of fname at /path/to/fname.ext for each file '''
     for fname in files:
         src = os.path.join(link_path, fname)
         dst = src + ext
@@ -75,12 +79,19 @@ def backup(files, ext=None):
 
 if __name__ == '__main__':
     args = docopt(__doc__)
-    if not args['OS']:
-        sys.exit(__doc__)
-    files, links = dotfiles(args['OS']), dotlinks()
+    links = dotlinks()
+    # wipe or backup and exit
     if args['--wipe']:
         wipe(links)
-    elif args['--backup']:
+        sys.exit("Ready to link")
+    elif args['--backup'] and not args['<ext>']:
+        sys.exit("Please supply an extension")
+    elif args['--backup'] and args['<ext>']:
         backup(links, args['--backup'])
+        sys.exit("Ready to link")
+    if not args['OS']:
+        sys.exit(__doc__)
+    files, = dotfiles(args['OS']),
     pairs = zip(files, links)
     make_links(pairs)
+    sys.exit("Linking finished.")
