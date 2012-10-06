@@ -1,4 +1,8 @@
-# Instructions
+#!/usr/bin/env python
+import os
+import sys
+
+header = '''# Instructions
 
 ## Installation
 
@@ -16,15 +20,10 @@ All 3 options create symlinks.
 
 `./makelinks.py --wipe <os>`
 
-### create new README
-
-`./readme.py > README.md`
-
 ## Included Files
 
-* .bash_aliases
-* .bash_functions
-* .bash_profile
-* .bashcolors
-* .bashrc
-* .profile
+'''
+
+files = '\n'.join('* ' + fname for fname in os.listdir('mac'))
+
+print header + files
