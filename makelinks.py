@@ -21,26 +21,12 @@ except ImportError:
     from lib.docopt import docopt
 
 link_path = os.environ['HOME']
-platforms = {'mac': 'darwin',
-             'linux': 'linux2'}
+platforms = ('mac', 'linux')
+dotfile_names = [fname for fname in os.listdir('mac')]
 
-def platform():
-    for platform in platforms.keys():
-        if platforms[platform] == sys.platform:
-            return os.listdir(platform)
-    return None
-
-def file_names():
-    files = get_filenames()
-    if files:
-        return [os.path.join(os.getcwd(), dotfile) for dotfile in files]
-
-dotfile_names = file_names()
-
-def dotlinks(path):
+def dotlinks(path=link_path):
     ''' Return a list of link destination paths '''
     return [os.path.join(path, fname) for fname in dotfile_names]
-
 
 def dotfiles(os_choice, path=None):
     ''' Return a list of dotfiles for the selected os '''
