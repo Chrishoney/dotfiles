@@ -3,11 +3,11 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# don't put duplicate lines in the history. 
-HISTCONTROL=$HISTCONTROL${HISTCONTROL+:}ignoredups
 # force ignoredups and ignorespace
-HISTCONTROL=ignoreboth
-# append to the history file, don't overwrite it
+export HISTCONTROL=ignoreboth
+# remove history size limit, append to history
+export HISTFILESIZE=
+export HISTSIZE=
 shopt -s histappend
 
 # update the values of LINES and COLUMNS as necessary
@@ -82,3 +82,4 @@ fi
 set -o vi
 export VISUAL=vim
 export EDITOR=vim
+export PYTHONDONTWRITEBYTECODE=1
