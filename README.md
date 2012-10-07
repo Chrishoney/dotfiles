@@ -16,9 +16,9 @@ WARNING!!
 
 `./makelinks.py --backup <ext> <os>`
 
-This will backup any existing files listed below under "Included files"
-in the folder they are located in. Files will be named 'filename.<ext>'
-The original files are deleted after the backups are created.
+This will backup any existing files that would be deleted by a wipe.
+Files will be named 'filename.<ext>' inside ~/. After the files are
+backed up, they are deleted and the symlinks are created.
 
 Note: If the existing dotfiles are symlinks, no backups will be made,
 and the old symlinks will be silently removed.
