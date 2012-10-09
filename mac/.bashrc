@@ -83,3 +83,4 @@ set -o vi
 export VISUAL=vim
 export EDITOR=vim
 export PYTHONDONTWRITEBYTECODE=1
+export VIRTUALENV_DISTRIBUTE=1
