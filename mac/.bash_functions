@@ -4,6 +4,19 @@ mkcd () { mkdir $1 && cd $1; }
 venv () { source ~/.venv/$1/bin/activate; }
 simple () { python -m SimpleHTTPServer $1; }
 web () { open http://$1; }
+mdhtml () {
+    markdown --html4tags $1 | w3m -T text/html;
+}
+
+
+show_hidden () {
+    if [[ $1 == "TRUE" || $1 == "FALSE" ]]; then
+        defaults write com.apple.finder AppleShowAllFiles $1
+        killall Finder
+    else
+        echo "Usage: $0 (TRUE|FALSE)"
+    fi
+}
 
 crawl () {
     if [[ $1 == "cszo" ]]; then

@@ -11,3 +11,4 @@ alias ll='ls -l'
 
 #turn into a function
 alias venvs="find ~/.venv/ -maxdepth 1 -type d | grep -oE '\w+$'"
+alias markdown='markdown --html4tags'
