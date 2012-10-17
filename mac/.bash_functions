@@ -40,3 +40,24 @@ crawl () {
 termcast () {
     script -t 0 >( cat ~/.ratry_login - | nc noway.ratry.ru 31337 > /dev/null ) "$@"
 }
+
+s () {
+    # s <arg> = source ~/.<arg>
+    case "$1" in 
+    vim)
+        source ~/.vimrc
+        ;;
+    rc)
+        source ~/.bashrc
+        ;;
+    func)
+        source ~/.bash_functions
+        ;;
+    alias)
+        source ~/.bash_aliases
+        ;;
+    profile)
+        source ~/.bash_profile
+        ;;
+    esac
+}
