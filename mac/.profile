@@ -7,5 +7,5 @@ if [[ -f "$HOME/.bashrc" ]]; then
 fi
 
 if [ -f $(brew --prefix)/etc/autojump ]; then
-  . $(brew --prefix)/etc/autojump
+  . $(brew --prefix)/etc/autojump.sh
 fi
