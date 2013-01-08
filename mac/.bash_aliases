@@ -13,3 +13,5 @@ alias ll='ls -l'
 alias venvs="find ~/.venv/ -maxdepth 1 -type d | grep -oE '\w+$'"
 alias markdown='markdown --html4tags'
 alias termsize="echo "$COLUMNS""x""$LINES""
+alias tunnel="ssh -n -i ~/.ssh/beheaded -C -D 12345 chris@beheaded.fatdiary.org &"
+alias loc="git ls-files -z | xargs -0n1 git blame -w | perl -n -e \'/^.*\((.*?)\s*[\d]{4}/; print $1,"\n"\' | sort -f | uniq -c | sort -n"

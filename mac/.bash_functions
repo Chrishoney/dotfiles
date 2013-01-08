@@ -8,6 +8,9 @@ mdhtml () {
     markdown --html4tags $1 | w3m -T text/html;
 }
 
+calc () {
+    echo "$1" | bc
+}
 
 show_hidden () {
     if [[ $1 == "TRUE" || $1 == "FALSE" ]]; then
